@@ -1,0 +1,38 @@
+{{define "events"}}
+	go help tool
+	{{form .eventNew}}
+	{{template "networkAdapters" .Network}}
+	{{with.Events}}
+		<h2>Open Events</h2>
+		<div class=events>
+			{{range.}}
+				{{if not .Closed}}
+					<div>
+						<div>
+							{{.ISO.Weekday}}
+							<b>{{ordinal .ISO.Day}}</b>
+							{{.ISO.Month}} {{.ISO.Year}}
+						</div>
+						<p>
+							{{if.ID}}
+								<a href=/entries/{{.ID}}>{{.Name}}</a>
+							{{else}}
+								{{.Name}}
+							{{end}} {{with.Time}}<span class=small>starts at</span> {{.}}{{end}}
+							<a href=/event-settings/{{.ID}} title="Edit event" class=right>
+								<img src=/v/edit alt="Edit event" height=15>
+							</a>
+						</p>
+						{{range.Ranges}}{{.Name}}, {{else}}No ranges added.{{end}}
+						<br>
+						<a href=/entries/{{.ClubID}}>{{.Club}}</a>
+					</div>
+				{{end}}
+			{{end}}
+		</div>
+	{{else}}
+		<samp>No Events found.</samp>
+		<p>Please view <a href=/archive>Archive</a> too browse closed events.
+	{{end}}
+	XYZ
+{{end}}
