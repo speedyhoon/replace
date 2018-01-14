@@ -7,15 +7,15 @@ import (
 	"testing"
 
 	"github.com/sergi/go-diff/diffmatchpatch"
+	"path/filepath"
 )
 
 func TestReplace(t *testing.T) {
-
-	input, err := ioutil.ReadFile("input.html")
+	input, err := ioutil.ReadFile(filepath.Join("test", "input.html"))
 	if err != nil {
 		t.Error("unable to read input.html")
 	}
-	expected, err := ioutil.ReadFile("expected.html")
+	expected, err := ioutil.ReadFile(filepath.Join("test", "expected.html"))
 	if err != nil {
 		t.Error("unable to read expected.html")
 	}
@@ -33,28 +33,14 @@ func TestReplace(t *testing.T) {
 
 	if string(expected) == string(output) {
 		println("strings are different too")
-	}else{
+	} else {
 		println("strings are the same!")
 	}
-
-/*
-	for i := 0; i < len(expected); i++{
-		if expected[i] != output[i]{
-			print("different ", i, expected[i], output[i])
-			fmt.Printf("%s == %s\n", expected[i], output[i])
-		}
-	}*/
 
 	fmt.Printf("Expected: %s\n", expected)
 	fmt.Printf("Output: %s\n", output)
 
-	//ioutil.WriteFile("temp.html", output, 0777)
-	//if err != nil {
-	//	t.Error("unable to write temp.html")
-	//}
-
 	if !bytes.Equal(expected, output) {
-
 		t.Error("Output differs from expected\n", printDiff(expected, output))
 	}
 }
