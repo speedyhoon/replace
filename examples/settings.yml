@@ -1,0 +1,4 @@
+- s: '{{define "events"}}'
+  r: bar
+- se: int8((1+2)*3)
+  r: nine
