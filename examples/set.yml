@@ -1,0 +1,8 @@
+- s: "{{form ."
+  r: "{{template ."
+- sx: "<(/){0,1}samp>"
+  r: "<s>"
+- s: "go help tool"
+  rc: "go help tool"
+- s: ".<"
+  re: "int8( 3 * (1 + 2) )"`)
