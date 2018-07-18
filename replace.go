@@ -88,6 +88,27 @@ type Haystack struct {
 	ReplaceEval string `yaml:"re,omitempty"`
 }
 
+func ReplaceYAMLFile(src []byte, path string)[]byte{
+	yml, err := ioutil.ReadFile(path)
+	if err != nil {
+		wrn.Fatalln(err)
+	}
+	return ReplaceYAML(src, yml)
+}
+
+func ReplaceYAMLStr(src []byte, yml string) []byte{
+	return ReplaceYAML(src, []byte(yml))
+}
+
+func ReplaceYAML(src, yml []byte)[]byte{
+	var h []Haystack
+	err := yaml.Unmarshal(yml, &h)
+	if err != nil {
+		wrn.Fatalln(err)
+	}
+	return Replace(src, h)
+}
+
 //Replace returns the modified byte slice src. If any Haystack options error they are printed to stderr & Replace continues processing.
 func Replace(src []byte, hs []Haystack) []byte {
 	var searchRegex *regexp.Regexp
