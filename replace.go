@@ -31,8 +31,7 @@ List of search and replace options:
 	sx: search regex
 	r:  replace string
 	rc: run command & replace with the returned output
-	re: evaluate Go code & replace with the returned output
-`)
+	re: evaluate Go code & replace with the returned output`)
 	}
 
 	file := flag.String("file", "", `Load the specified YAML file with a list of search & replace options
