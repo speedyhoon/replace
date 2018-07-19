@@ -16,6 +16,16 @@ import (
 var wrn = log.New(os.Stderr, "", 0)
 
 func main() {
+	file := flag.String("file", "", `Load a YAML file containing search & replace options
+	Example file contents to replace "foo" with "bar" and "9" with "nine":
+	- s: foo,
+	  r: bar
+	- se: int8((1+2)*3),
+	  r: nine
+`)
+	yml := flag.String("yaml", "", `Example inline parameters to replace "foo" with "bar" and "9" with "nine":
+	-yaml="[{s: foo, r: bar},{se: int8((1+2)*3), r: nine}]"`)
+
 	flag.Usage = func() {
 		flag.PrintDefaults()
 		fmt.Println(`
@@ -28,16 +38,6 @@ List of search and replace options:
 	rc: run command & replace with the returned output
 	re: evaluate Go code & replace with the returned output`)
 	}
-
-	file := flag.String("file", "", `Load the specified YAML file with a list of search & replace options
-	Example file contents to replace "foo" with "bar" and "9" with "nine":
-	- s: foo,
-	  r: bar
-	- se: int8((1+2)*3),
-	  r: nine
-`)
-	yml := flag.String("yaml", "", `Example inline parameters to replace "foo" with "bar" and "9" with "nine":
-	-yaml="[{s: foo, r: bar},{se: int8((1+2)*3), r: nine}]"`)
 	flag.Parse()
 
 	var h []replace.Needle
