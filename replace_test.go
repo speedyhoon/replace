@@ -1,4 +1,4 @@
-package main
+package replace
 
 import (
 	"bytes"
@@ -20,11 +20,11 @@ func TestReplace(t *testing.T) {
 		t.Error("unable to read expected.html")
 	}
 
-	settings := []Haystack{
+	settings := []Needle{
 		{Search: "{{form .", Replace: "{{template ."},
-		{SearchRegex: "<(/){0,1}samp>", Replace: "<s>"},
-		{Search: "go help tool", ReplaceCmd: "go help tool"},
-		{Search: ".<", ReplaceEval: "int8( 3 * (1 + 2) )"},
+		{SRegex: "<(/){0,1}samp>", Replace: "<s>"},
+		{Search: "go help tool", RCmd: "go help tool"},
+		{Search: ".<", REval: "int8( 3 * (1 + 2) )"},
 	}
 
 	output := Replace(input, settings)
