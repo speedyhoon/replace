@@ -4,10 +4,10 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
+	"path/filepath"
 	"testing"
 
 	"github.com/sergi/go-diff/diffmatchpatch"
-	"path/filepath"
 )
 
 func TestReplace(t *testing.T) {

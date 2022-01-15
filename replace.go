@@ -14,7 +14,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-//Needle search & replace options for a single operation.
+// Needle search & replace options for a single operation.
 type Needle struct {
 	s       []byte `yaml:"-"`
 	Search  string `yaml:"s,omitempty"`
@@ -48,7 +48,7 @@ func ReplaceYAML(src, yml []byte) []byte {
 	return Replace(src, h)
 }
 
-//Replace returns the modified byte slice src. Errors are printed to stderr & Replace continues processing.
+// Replace returns the modified byte slice src. Errors are printed to stderr & Replace continues processing.
 func Replace(src []byte, hs []Needle) []byte {
 	var searchRegex *regexp.Regexp
 	var err error

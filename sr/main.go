@@ -61,7 +61,7 @@ List of search and replace options:
 		h = append(h, j...)
 	}
 
-	//Read Standard In stream
+	// Read Standard In stream
 	src, err := bufio.NewReader(os.Stdin).ReadBytes(0)
 	if err != nil && err != io.EOF {
 		wrn.Fatalln(err)
