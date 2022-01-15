@@ -47,7 +47,8 @@ List of search and replace options:
 	}
 
 	if len(*file) > 0 {
-		yamlSrc, err := ioutil.ReadFile(*file)
+		var yamlSrc []byte
+		yamlSrc, err = ioutil.ReadFile(*file)
 		if err != nil {
 			wrn.Fatalln(err)
 		}
