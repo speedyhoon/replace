@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	"github.com/apaxa-go/eval"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 )
 
 //Needle search & replace options for a single operation.
