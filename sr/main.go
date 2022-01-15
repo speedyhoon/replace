@@ -67,5 +67,8 @@ List of search and replace options:
 		wrn.Fatalln(err)
 	}
 
-	os.Stdout.Write(replace.Replace(src, h))
+	_, err = os.Stdout.Write(replace.Replace(src, h))
+	if err != nil {
+		wrn.Fatalln(err)
+	}
 }
