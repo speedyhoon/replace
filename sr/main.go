@@ -10,7 +10,7 @@ import (
 	"os"
 
 	"github.com/speedyhoon/replace"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 )
 
 var wrn = log.New(os.Stderr, "", 0)
