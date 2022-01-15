@@ -27,19 +27,19 @@ type Needle struct {
 	REval   string `yaml:"re,omitempty"`
 }
 
-func ReplaceYAMLFile(src []byte, path string) []byte {
+func YamlFile(src []byte, path string) []byte {
 	yml, err := ioutil.ReadFile(path)
 	if err != nil {
 		log.Fatalln(err)
 	}
-	return ReplaceYAML(src, yml)
+	return Yaml(src, yml)
 }
 
-func ReplaceYAMLStr(src []byte, yml string) []byte {
-	return ReplaceYAML(src, []byte(yml))
+func YamlStr(src []byte, yml string) []byte {
+	return Yaml(src, []byte(yml))
 }
 
-func ReplaceYAML(src, yml []byte) []byte {
+func Yaml(src, yml []byte) []byte {
 	var h []Needle
 	err := yaml.Unmarshal(yml, &h)
 	if err != nil {
@@ -60,8 +60,8 @@ func Replace(src []byte, hs []Needle) []byte {
 			isRegex = true
 			searchRegex, err = regexp.Compile(h.SRegex)
 		case h.SCmd != "":
-			cmds := strings.Split(h.SCmd, " ")
-			h.s, err = run(cmds[0], cmds[1:]...)
+			commands := strings.Split(h.SCmd, " ")
+			h.s, err = run(commands[0], commands[1:]...)
 		case h.SEval != "":
 			h.s, err = evl(h.SEval)
 		default:
@@ -75,8 +75,8 @@ func Replace(src []byte, hs []Needle) []byte {
 
 		switch {
 		case h.RCmd != "":
-			cmds := strings.Split(h.RCmd, " ")
-			h.r, err = run(cmds[0], cmds[1:]...)
+			commands := strings.Split(h.RCmd, " ")
+			h.r, err = run(commands[0], commands[1:]...)
 		case h.REval != "":
 			h.r, err = evl(h.REval)
 		default:
