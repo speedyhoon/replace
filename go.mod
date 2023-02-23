@@ -10,5 +10,5 @@ require (
 
 require (
 	github.com/apaxa-go/helper v0.0.0-20180607175117-61d31b1c31c3 // indirect
-	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/text v0.3.8 // indirect
 )
